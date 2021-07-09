@@ -1,9 +1,10 @@
 # viral_proteomics
 pipelines to build sequential and functional profiles for RNA viruses
 
+Here is an example of using the pipelines for RNA-dependent-RNA-polymerase discovery,
 ![rdrp-discovery-04-06-2021](https://user-images.githubusercontent.com/55744039/125015736-02047800-e068-11eb-8b32-96563288a7fa.png)
 
-Here is an example of using the pipelines for RNA-dependent-RNA-polymerase discovery,
+
 [rdrp-discovery-04-06-2021-liqian.pdf](https://github.com/lynceuslq/viral_proteomics/files/6788370/rdrp-discovery-04-06-2021-liqian.pdf)
 
 
