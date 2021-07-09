@@ -1,8 +1,9 @@
 #!/bin/bash
 
-##########################here are the thing you need to define before running the ###################
+##########################here are the thing you need to define before running diablastpbytaxid.Orthornavirae.full.sh ###################
 export PATH="/PATH/TO/JAVA/bin/:$PATH" #do not use anything containing "TESTFAM", "TESTWORKDIR", "TESTINPATH" or "INPUTFASTA", the same in the lines below
 INTERPROSCAN="/PATH/TO/INTERPROSCAN/interproscan-5.50-84.0/interproscan.sh"
+CDHIT="/PATH/TO/CDHIT/cd-hit-4.8.1/bin/cd-hit"
 fullnamelineage="/PATH/TO/LINEAGEFILE/fullnamelineage.dmp" # a file decompressed from new_dump.tar.gz obtained from NCBI, a faster way is extracting taxa derived from Orthornavirae and store it as Orthornavirae.fullnamelineage.dmp here
 
 
@@ -24,7 +25,7 @@ cut -f1 $wokingdir/${fam// /}.acclist | sort | uniq | while read acc; do grep -w
 
 echo -e "seq extraction completed for $fam at $(date)"
 
-/hwfssz5/ST_INFECTION/GlobalDatabase/share/software/Miniconda3/envs.multi-user/cd-hit-4.8.1/bin/cd-hit -i $wokingdir/${fam// /}.assigned.faa -o $wokingdir/${fam// /}.clusetred.faa -c 0.9 -aS 0.8 -p 1
+$CDHIT -i $wokingdir/${fam// /}.assigned.faa -o $wokingdir/${fam// /}.clusetred.faa -c 0.9 -aS 0.8 -p 1
 
 echo -e "seq clustering completed for $fam at $(date)"
 
