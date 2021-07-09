@@ -1,8 +1,12 @@
 #!/bin/bash
-export PATH="/hwfssz5/ST_INFECTION/GlobalDatabase/user/fengqikai/software/.conda/envs/Trinity-2.11.0/bin/:$PATH"
-INTERPROSCAN="/hwfssz5/ST_INFECTION/GlobalDatabase/user/liqian6/tools/interproscan-5.50-84.0/interproscan.sh"
 
-fullnamelineage="/hwfssz5/ST_INFECTION/GlobalDatabase/user/liqian6/new_taxdump/Orthornavirae.fullnamelineage.dmp"
+##########################here are the thing you need to define before running the ###################
+export PATH="/PATH/TO/JAVA/bin/:$PATH" #do not use anything containing "TESTFAM", "TESTWORKDIR", "TESTINPATH" or "INPUTFASTA", the same in the lines below
+INTERPROSCAN="/PATH/TO/INTERPROSCAN/interproscan-5.50-84.0/interproscan.sh"
+fullnamelineage="/PATH/TO/LINEAGEFILE/fullnamelineage.dmp" # a file decompressed from new_dump.tar.gz obtained from NCBI, a faster way is extracting taxa derived from Orthornavirae and store it as Orthornavirae.fullnamelineage.dmp here
+
+
+##########################you do not need to change anything below#####################
 fam="TESTFAM"
 wokingdir="TESTWORKDIR/$fam"
 Infiledir="TESTINPATH"
