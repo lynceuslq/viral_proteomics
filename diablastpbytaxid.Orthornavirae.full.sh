@@ -1,5 +1,6 @@
 #!/bin/bash
 
+############################please defing the arguements below and those in other scripts before running##################################
 DIAMOND="/PATH/TO/DIAMOD"
 BLAST_BIN="/PATH/TO/BLAST/BIN"
 CDD_BLASTPROFILE=""
@@ -12,6 +13,7 @@ OUTFAMDIR="PATH/TO/STORE/RESULTS"
 FAMILY_SCRIPTS="PATH/TO/rmrdseqbyfam.sh"
 QSUB="FULL_QSUB_ARGUEMENTS" #if you do not have a computer cluster to work on, just type in use "bash" or "nohup" here, should work the same
 
+###############################################you do not need to change anything below##################################################
 echo -e "Starting working on $Infile at $(date)"
 
 $DIAMOND  blastp --db  $DIAMOND_DB -q $INDIR/$Infile -f 6 qseqid sseqid qlen slen length qcovhsp pident evalue bitscore mismatch staxids sscinames salltitles full_sseq  --threads 16 --very-sensitive -k 0  -e 0.00001 --taxonlist 2732396 -o $OUTDIR/$Infile.blastpout
@@ -44,6 +46,7 @@ cat $OUTDIR/$Infile.allsig.list | grep ";" | head | while read f1 f2 f3 f4 f5; d
 
 echo -e "finishing at $(date)"
 
+#################################analyses for each family starts here, you do not need to change anything here as well#################################
 cat $familylist | while read fam; do cp $FAMILY_SCRIPTS $OUTDIR/rmrdseqbyfam.${fam// /}.tmp; sed -i "s/TESTFAM/$(echo ${fam}  | tr "/" "@")/" $OUTDIR/rmrdseqbyfam.${fam// /}.tmp ; sed -i "s/TESTWORKDIR/$(echo ${OUTFAMDIR} | tr "/" "@")/" $OUTDIR/rmrdseqbyfam.${fam// /}.tmp; sed -i "s/TESTINPATH/$(echo ${OUTDIR}  | tr "/" "@")/" $OUTDIR/rmrdseqbyfam.${fam// /}.tmp; sed -i "s/INPUTFASTA/$(echo ${Infile} | tr "/" "@")/" $OUTDIR/rmrdseqbyfam.${fam// /}.tmp ; cat $OUTDIR/rmrdseqbyfam.${fam// /}.tmp | tr "@" "/" > $OUTDIR/rmrdseqbyfam.${fam// /}.sh; rm $OUTDIR/rmrdseqbyfam.${fam// /}.tmp ; echo -e "script for $fam is prepared, please run it in $OUTDIR" ; done
  
 cat $familylist | while read fam; do $QSUB $OUTDIR/rmrdseqbyfam.${fam// /}.sh ; echo -e "script for viral family $fam has been submitted at $(date)" ; done
