@@ -1,4 +1,4 @@
-#!/bin/bash
+ #!/bin/bash
 
 ##########################here are the thing you need to define before running diablastpbytaxid.Orthornavirae.full.sh ###################
 export PATH="/PATH/TO/JAVA/bin/:$PATH" #do not use anything containing "TESTFAM", "TESTWORKDIR", "TESTINPATH" or "INPUTFASTA", the same in the lines below
